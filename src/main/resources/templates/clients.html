@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Clients</title>
+    <!-- Include your CSS and other head elements here -->
+</head>
+<body>
+<h1>Clients</h1>
+
+<!-- Table for displaying existing clients -->
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Surname</th>
+        <th>Phone</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="client : ${clients}">
+        <td th:text="${client.id}"></td>
+        <td th:text="${client.name}"></td>
+        <td th:text="${client.surname}"></td>
+        <td th:text="${client.phone}"></td>
+    </tr>
+    </tbody>
+</table>
+
+<!-- Form for adding a new client -->
+<h2>Add New Client</h2>
+<form th:action="@{/clients}" th:object="${client}" method="post">
+    <input type="text" th:field="*{name}" placeholder="Name" required />
+    <input type="text" th:field="*{surname}" placeholder="Surname" required />
+    <input type="text" th:field="*{phone}" placeholder="Phone" required />
+    <button type="submit">Create Client</button>
+</form>
+
+</body>
+</html>
